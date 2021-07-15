@@ -5,6 +5,8 @@ project(test)
 add_executable(test 
                 test.cpp
                 logger_wrapper_t.cpp
+                common_includes_t.h
+                cpp_logger_build_config_t.h
                 error_codes_t.h
                 icpp_logger_t.h
                 utilities/smart_pointer_t.h
@@ -14,5 +16,5 @@ add_executable(test
 target_include_directories(
   test
   PUBLIC
-  utilities
+  utilities/
 )

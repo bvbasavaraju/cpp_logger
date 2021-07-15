@@ -68,6 +68,11 @@ namespace cpplogger
       {
         return (errorCode == 0);
       }
+
+      int64_t Value(void)
+      {
+        return errorCode;
+      }
   };
 } //cpplogger
 

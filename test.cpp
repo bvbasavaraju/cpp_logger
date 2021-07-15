@@ -4,6 +4,7 @@
 #include "error_codes_t.h"
 #include "smart_pointer_t.h"
 #include "logger_wrapper_t.h"
+#include "common_includes_t.h"
 
 using namespace std;
 using namespace cpplogger;
@@ -144,28 +145,25 @@ class Logger_t : public ICppLogger_t
     }
 };
 
+Status_t TestLogging(void)
+{
+  SmartPtr_t<Logger_t> logger_ = new Logger_t();
+  RETURN_STATUS_IF_NULL(logger_, BAD_MEMORY_ALLOCATION_FAILED);
+
+  SmartPtr_t<LoggerWrapper_t> logWrapper;
+  Status_t status = LoggerWrapper_t::Create(logger_, logWrapper);
+  RETURN_STATUS_IF_BAD_OR_NULL(logWrapper, status);
+
+  CPP_LOG_ERROR(GOOD);
+  CPP_LOG_ERROR(BAD_NOTHING_TO_DO);
+  CPP_LOG_ERROR_MSG("This is the test to see if string based error message works");
+  CPP_LOG_ERROR_CODE_AND_MSG(BAD_NOTHING_TO_DO, "This is the test to see if string based error message works");
+  CPP_LOG_ERROR_DATA("%s %d %f", "Hi there", 123, 12.1234);
+
+  return GOOD;
+}
+
 int main()
 {
-  {
-    SmartPtr_t<Logger_t> logger_ = new Logger_t();
-    if(logger_.IsNull())
-    {
-      return -1;
-    }
-
-    SmartPtr_t<LoggerWrapper_t> logWrapper;
-    Status_t status = LoggerWrapper_t::Create(logger_, logWrapper);
-    if(status.IsBad() || logWrapper.IsNull())
-    {
-      return -1;
-    }
-
-    CPP_LOG_ERROR(GOOD);
-    CPP_LOG_ERROR(BAD_NOTHING_TO_DO);
-    CPP_LOG_ERROR_MSG("This is the test to see if string based error message works");
-    CPP_LOG_ERROR_CODE_AND_MSG(BAD_NOTHING_TO_DO, "This is the test to see if string based error message works");
-    CPP_LOG_ERROR_DATA("%s %d %f", "Hi there", 123, 12.1234);
-  }
-
-  return 0;
+  return TestLogging().IsBad() ? -1 : 0;
 }

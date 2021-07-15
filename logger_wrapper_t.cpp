@@ -17,6 +17,7 @@
 #include "logger_wrapper_t.h"
 #include "error_codes_t.h"
 #include "status_t.h"
+#include "common_includes_t.h"
 
 namespace cpplogger
 {
@@ -37,10 +38,7 @@ LoggerWrapper_t::~LoggerWrapper_t()
 
 Status_t LoggerWrapper_t::Initialise(SmartPtr_t<ICppLogger_t> logger_)
 {
-  if(logger_.IsNull())
-  {
-    return BAD_INVALID_ARGUMENT;
-  }
+  RETURN_STATUS_IF_NULL(logger_, BAD_INVALID_ARGUMENT);
 
   logger = logger_;
   return GOOD;
@@ -54,10 +52,7 @@ void LoggerWrapper_t::LogData(
   const char* filename,
   const char* logMessage)
 {
-  if(logger.IsNull())
-  {
-    return;
-  }
+  RETURN_IF_NULL(logger);
 
   if(logMessage != 0)
   {
@@ -96,10 +91,7 @@ void LoggerWrapper_t::LogData(
   const char* format,
   ...)
 {
-  if(logger.IsNull())
-  {
-    return;
-  }
+  RETURN_IF_NULL(logger);
 
   va_list args;
   va_start(args, format);
@@ -112,22 +104,13 @@ Status_t LoggerWrapper_t::Create(
   SmartPtr_t<ICppLogger_t> logger_,
   SmartPtr_t<LoggerWrapper_t>& logWrapper)
 {
-  if(logger_.IsNull())
-  {
-    return BAD_INVALID_ARGUMENT;
-  }
+  RETURN_STATUS_IF_NULL(logger_, BAD_INVALID_ARGUMENT);
 
   SmartPtr_t<LoggerWrapper_t> logObj = new LoggerWrapper_t();
-  if(logObj.IsNull())
-  {
-    return BAD_MEMORY_ALLOCATION_FAILED;
-  }
+  RETURN_STATUS_IF_NULL(logObj, BAD_MEMORY_ALLOCATION_FAILED);
 
   Status_t status = logObj->Initialise(logger_);
-  if(status.IsBad())
-  {
-    return status;
-  }
+  RETURN_STATUS_IF_BAD(status);
 
   logWrapper = logObj;
   return GOOD;
