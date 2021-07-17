@@ -60,7 +60,7 @@ namespace cpplogger
 } //cpplogger
 
 
-#if (CPP_LOGGER_ENABLE_LOGGING_WITH_FILE_FUNC_LINE_NUMBER > 0)
+#if (CPP_LOGGER_LOG_WITH_FILE_FUNCTION_LINE_NUMBER > 0)
 
   //Logging with different levels
   #define CPP_LOG(logLevel, errorCode) \
