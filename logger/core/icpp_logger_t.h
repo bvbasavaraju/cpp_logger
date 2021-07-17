@@ -17,8 +17,8 @@
 #ifndef _I_CPP_LOGGER_T_H_
 #define _I_CPP_LOGGER_T_H_
 
-#include "stdint.h"
 #include "stdarg.h"
+#include "error_code_t.h"
 
 namespace cpplogger
 {
@@ -39,29 +39,29 @@ namespace cpplogger
 
       virtual void LogData(
         LogLevel_t level,
-        int64_t errorCode) = 0;
+        ErrorCode_t errorCode) = 0;
 
       virtual void LogData(
         LogLevel_t level,
-        int64_t errorCode,
+        ErrorCode_t errorCode,
         const char* errorMessage) = 0;
 
       virtual void LogData(
         LogLevel_t level, 
-        int64_t errorCode,
+        ErrorCode_t errorCode,
         uint32_t lineNumber, 
         const char* filename) = 0;
 
       virtual void LogData(
         LogLevel_t level, 
-        int64_t errorCode,
+        ErrorCode_t errorCode,
         uint32_t lineNumber, 
         const char* filename,
         const char* errorMessage) = 0;
 
       virtual void LogData(
         LogLevel_t level, 
-        int64_t errorCode,
+        ErrorCode_t errorCode,
         uint32_t lineNumber, 
         const char* function, 
         const char* filename,

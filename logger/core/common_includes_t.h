@@ -17,9 +17,7 @@
 #ifndef _COMMON_INCLUDES_T_H_
 #define _COMMON_INCLUDES_T_H_
 
-#include "status_t.h"
 #include "logger_wrapper_t.h"
-#include "cpp_logger_build_config_t.h"
 #include "error_codes_t.h"
 
 //Returning macros

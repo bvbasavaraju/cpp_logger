@@ -15,54 +15,48 @@
 */
 
 #include "status_t.h"
-#include "error_number_t.h"
-#include "common_includes_t.h"
+#include "error_codes_t.h"
 
 namespace cpplogger
 {
 
 Status_t::Status_t(void)
-{
-  errorNumber = new ErrorNumber_t();
-}
+  : errorNumber(GOOD)
+{}
+
+Status_t::Status_t(CPP_LOGGER_ERROR_CODE_TYPE val)
+  : errorNumber(val)
+{}
 
 Status_t::Status_t(const Status_t& status)
-{
-  errorNumber.Reset();
-  errorNumber = new ErrorNumber_t(status.Value());
-}
+  : errorNumber(status.Value())
+{}
 
-Status_t::Status_t(int64_t val)
-{
-  errorNumber.Reset();
-  errorNumber = new ErrorNumber_t(val);
-}
+Status_t::Status_t(ErrorCode_t val)
+  : errorNumber(val)
+{}
 
 Status_t::~Status_t()
-{
-  errorNumber.Reset();
-}
+{}
 
 void Status_t::operator=(Status_t status)
 {
   errorNumber = status.errorNumber;
 }
 
-void Status_t::operator=(int64_t val)
+void Status_t::operator=(ErrorCode_t val)
 {
-  RETURN_IF_NULL(errorNumber);
-
-  errorNumber->Value(val);
+  errorNumber = val;
 }
 
 bool Status_t::operator==(Status_t status)
 {
-  return errorNumber.IsNull() ? true : (errorNumber->Value() == status.Value());
+  return (errorNumber == status.Value());
 }
 
-bool Status_t::operator==(int64_t val)
+bool Status_t::operator==(ErrorCode_t val)
 {
-  return errorNumber.IsNull() ? true : (errorNumber->Value() == val);
+  return (errorNumber == val);
 }
 
 bool Status_t::IsBad(void) const
@@ -72,12 +66,12 @@ bool Status_t::IsBad(void) const
 
 bool Status_t::IsGood(void) const
 {
-  return errorNumber.IsNull() ? false : errorNumber->IsGood();
+  return errorNumber.IsGood();
 }
 
-int64_t Status_t::Value(void) const
+CPP_LOGGER_ERROR_CODE_TYPE Status_t::Value(void) const
 {
-  return errorNumber.IsNull() ? -1 : errorNumber->Value();
+  return errorNumber.Value();
 }
 
 } //cpplogger

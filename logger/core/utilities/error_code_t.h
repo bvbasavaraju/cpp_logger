@@ -14,35 +14,38 @@
   limitations under the License.
 */
 
-#ifndef _ERROR_NUMBER_T_H_
-#define _ERROR_NUMBER_T_H_
+#ifndef _ERROR_CODE_T_H_
+#define _ERROR_CODE_T_H_
 
-#include "ierror_number_t.h"
-#include "smart_pointer_t.h"
+#include "cpp_logger_build_config_t.h"
 
 namespace cpplogger
 {
 
-class ErrorNumber_t : public IErrorNumber_t
+class ErrorCode_t
 {
-
 private:
-  int64_t errorCode;
+  CPP_LOGGER_ERROR_CODE_TYPE errorCode;
 
 public:
-  ErrorNumber_t();
-  ErrorNumber_t(int64_t val);
+  ErrorCode_t();
+  ErrorCode_t(const ErrorCode_t& val);
+  ErrorCode_t(CPP_LOGGER_ERROR_CODE_TYPE val);
 
-  ~ErrorNumber_t();
+  void operator=(CPP_LOGGER_ERROR_CODE_TYPE val);
+  void operator=(ErrorCode_t val);
+
+  bool operator==(CPP_LOGGER_ERROR_CODE_TYPE val) const;
+  bool operator==(ErrorCode_t val) const;
 
   bool IsBad(void) const;
 
   bool IsGood(void) const;
 
-  void Value(int64_t val);
-  int64_t Value(void) const;
-};  //ErrorNumber_t
+  void Value(CPP_LOGGER_ERROR_CODE_TYPE val);
+  CPP_LOGGER_ERROR_CODE_TYPE Value(void) const;
+};
 
 } //cpplogger
 
-#endif  //_ERROR_NUMBER_T_H_
+#endif  //_ERROR_CODE_T_H_

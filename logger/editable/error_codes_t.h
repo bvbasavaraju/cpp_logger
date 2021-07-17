@@ -17,6 +17,19 @@
 #ifndef _ERROR_CODES_T_H_
 #define _ERROR_CODES_T_H_
 
+/**
+ * @brief Error codes
+ * 
+ * This file can be edited to add the macro for the error codes
+ * As an example few error codes are added here!
+ * 
+ * Either the error code name or error number can be modified
+ * New Error code can be added as well, based on the project requirement
+ * 
+ * tempate to add new error code is:
+ * #define <MACRO FOR ERROR CODE> <CPP_LOGGER_ERROR_CODE_TYPE VALUE OF THE ERROR CODE>
+ */
+
 //Error codes can be added here!
 #define GOOD                           0
 #define BAD                           -1

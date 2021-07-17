@@ -64,7 +64,7 @@ class Logger_t : public ICppLogger_t
 
     void LogData_(
       ICppLogger_t::LogLevel_t level, 
-      int64_t errorCode,
+      ErrorCode_t errorCode,
       uint32_t lineNumber, 
       const char* function, 
       const char* filename,
@@ -72,7 +72,7 @@ class Logger_t : public ICppLogger_t
     {
       LogData_(level, lineNumber, function, filename);
 
-      std::cout << "Resulted in error: [ 0x" << std::hex << errorCode << " ]" << std::endl;
+      std::cout << "Resulted in error: [ 0x" << std::hex << errorCode.Value() << " ]" << std::endl;
       if(errorMessage != 0)
       {
         std::cout << "LogMessage: " << errorMessage << std::endl;
@@ -88,14 +88,14 @@ class Logger_t : public ICppLogger_t
 
     virtual void LogData(
       ICppLogger_t::LogLevel_t level,
-      int64_t errorCode)
+      ErrorCode_t errorCode)
     {
       LogData_(level, errorCode, 0, 0, 0, 0);
     }
 
     virtual void LogData(
       ICppLogger_t::LogLevel_t level,
-      int64_t errorCode,
+      ErrorCode_t errorCode,
       const char* errorMessage)
     {
       LogData_(level, errorCode, 0, 0, 0, errorMessage);
@@ -103,7 +103,7 @@ class Logger_t : public ICppLogger_t
 
     virtual void LogData(
       ICppLogger_t::LogLevel_t level, 
-      int64_t errorCode,
+      ErrorCode_t errorCode,
       uint32_t lineNumber, 
       const char* filename)
     {
@@ -112,7 +112,7 @@ class Logger_t : public ICppLogger_t
 
     virtual void LogData(
         ICppLogger_t::LogLevel_t level, 
-        int64_t errorCode,
+        ErrorCode_t errorCode,
         uint32_t lineNumber, 
         const char* filename,
         const char* errorMessage)
@@ -122,7 +122,7 @@ class Logger_t : public ICppLogger_t
 
     virtual void LogData(
       ICppLogger_t::LogLevel_t level, 
-      int64_t errorCode,
+      ErrorCode_t errorCode,
       uint32_t lineNumber, 
       const char* function, 
       const char* filename,

@@ -46,7 +46,7 @@ Status_t LoggerWrapper_t::Initialise(SmartPtr_t<ICppLogger_t> logger_)
 
 void LoggerWrapper_t::LogData(
   ICppLogger_t::LogLevel_t level, 
-  int64_t errorCode,
+  ErrorCode_t errorCode,
   uint32_t lineNumber, 
   const char* function, 
   const char* filename,

@@ -19,7 +19,6 @@
 
 #include "smart_pointer_t.h"
 #include "icpp_logger_t.h"
-#include "cpp_logger_build_config_t.h"
 
 namespace cpplogger
 {
@@ -39,7 +38,7 @@ namespace cpplogger
 
       static void LogData(
         ICppLogger_t::LogLevel_t level, 
-        int64_t errorCode,
+        ErrorCode_t errorCode,
         uint32_t lineNumber, 
         const char* function, 
         const char* filename,
