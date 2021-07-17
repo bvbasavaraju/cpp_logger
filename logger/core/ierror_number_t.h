@@ -14,42 +14,27 @@
   limitations under the License.
 */
 
-#ifndef _STATUS_T_H_
-#define _STATUS_T_H_
+#ifndef _I_ERROR_NUMBER_T_H_
+#define _I_ERROR_NUMBER_T_H_
 
-#include "smart_pointer_t.h"
+#include "stdint.h"
 
 namespace cpplogger
 {
 
-class IErrorNumber_t;
-class Status_t
+class IErrorNumber_t
 {
-private:
-  SmartPtr_t<IErrorNumber_t> errorNumber;
-
 public:
-  Status_t(void);
-  Status_t(const Status_t& status);
-  Status_t(int64_t val);
+  virtual ~IErrorNumber_t() {}
 
-  ~Status_t();
+  virtual bool IsBad(void) const = 0;
 
-  void operator=(Status_t status);
+  virtual bool IsGood(void) const = 0;
 
-  void operator=(int64_t val);
-
-  bool operator==(Status_t status);
-
-  bool operator==(int64_t val);
-
-  bool IsBad(void) const;
-
-  bool IsGood(void) const;
-
-  int64_t Value(void) const;
+  virtual void Value(int64_t val) = 0;
+  virtual int64_t Value(void) const = 0;
 };
 
-} //cpplogger
+} ////cpplogger
 
-#endif  //_STATUS_T_H_
+#endif  //_I_ERROR_NUMBER_T_H_

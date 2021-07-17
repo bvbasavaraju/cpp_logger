@@ -185,7 +185,7 @@ class SmartPtr_t
       return ptr;
     }
 
-    bool IsNull(void)
+    bool IsNull(void) const
     {
       return (ptr == nullptr);
     }

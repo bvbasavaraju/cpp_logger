@@ -14,8 +14,8 @@
   limitations under the License.
 */
 
-#ifndef _ICPP_LOGGER_T_H_
-#define _ICPP_LOGGER_T_H_
+#ifndef _I_CPP_LOGGER_T_H_
+#define _I_CPP_LOGGER_T_H_
 
 #include "stdint.h"
 #include "stdarg.h"
@@ -77,4 +77,4 @@ namespace cpplogger
   };
 } //cpplogger
 
-#endif  //_ICPP_LOGGER_T_H_
+#endif  //_I_CPP_LOGGER_T_H_
