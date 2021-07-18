@@ -19,6 +19,16 @@
 
 #include "cpp_logger_build_config_t.h"
 
+/**
+ * @brief Error code class
+ * 
+ * This class it used to wrap the error code number.
+ * Some platforms will support different size 
+ * ex: 8 bit, 16 bit, 32 bit or 64 bit.
+ * 
+ * Application developer can configure error code type
+ * using build option CPP_LOGGER_ERROR_CODE_TYPE
+ */
 namespace cpplogger
 {
 

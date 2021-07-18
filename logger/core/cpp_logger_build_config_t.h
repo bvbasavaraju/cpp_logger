@@ -19,14 +19,26 @@
 
 #include "stdint.h"
 
+/**
+ * @brief Macro to select the error type
+ * Default type is int64_t
+ */
 #ifndef CPP_LOGGER_ERROR_CODE_TYPE
 #define CPP_LOGGER_ERROR_CODE_TYPE int64_t
 #endif  //CPP_LOGGER_ERROR_CODE_TYPE
 
+/**
+ * @brief Macro to enable logging
+ * Default value is: 1
+ */
 #ifndef CPP_LOGGER_ENABLE_LOGGING
 #define CPP_LOGGER_ENABLE_LOGGING 1
 #endif //CPP_LOGGER_ENABLE_LOGGING
 
+/**
+ * @brief Macro to enable File name, function name and Line number
+ * Default value is: 0
+ */
 #ifndef CPP_LOGGER_LOG_WITH_FILE_FUNCTION_LINE_NUMBER
 #define CPP_LOGGER_LOG_WITH_FILE_FUNCTION_LINE_NUMBER 0
 #endif //CPP_LOGGER_LOG_WITH_FILE_FUNCTION_LINE_NUMBER

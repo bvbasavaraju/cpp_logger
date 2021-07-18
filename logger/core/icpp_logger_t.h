@@ -22,59 +22,166 @@
 
 namespace cpplogger
 {
-  class ICppLogger_t
+/**
+ * @brief ICppLogger_t class
+ * 
+ * This class defines interface to collect the logging information.
+ * The implementation of this class can log the details anywhere needed.
+ * Ex:
+ *    + Logging in console
+ *    + Logging in file
+ *    + Send log information using UDP
+ *    + Send log information using MQTT
+ */
+class ICppLogger_t
+{
+public:
+  typedef enum
   {
-    public:
-      typedef enum
-      {
-        LOG_LEVEL_INFO      = 0,
-        LOG_LEVEL_WARNING   = 1,
-        LOG_LEVEL_TRACE     = 2,
-        LOG_LEVEL_ERROR     = 3,
-        LOG_LEVEL_CRITICAL  = 4,
-      }LogLevel_t;
+    LOG_LEVEL_INFO      = 0,
+    LOG_LEVEL_WARNING   = 1,
+    LOG_LEVEL_TRACE     = 2,
+    LOG_LEVEL_ERROR     = 3,
+    LOG_LEVEL_CRITICAL  = 4,
+  }LogLevel_t;
 
-    public:
-      virtual ~ICppLogger_t() {}
+public:
+  virtual ~ICppLogger_t() {}
 
-      virtual void LogData(
-        LogLevel_t level,
-        ErrorCode_t errorCode) = 0;
+  /**
+   * @brief Log Data
+   * 
+   * @param[in] level
+   * Log level
+   *  
+   * @param[in] errorCode
+   * error code 
+   */
+  virtual void LogData(
+    LogLevel_t level,
+    ErrorCode_t errorCode) = 0;
 
-      virtual void LogData(
-        LogLevel_t level,
-        ErrorCode_t errorCode,
-        const char* errorMessage) = 0;
+  /**
+   * @brief Log Data
+   * 
+   * @param[in] level
+   * Log level
+   *  
+   * @param[in] errorCode
+   * error code 
+   * 
+   * @param[in] errorMessage 
+   * error message
+   */
+  virtual void LogData(
+    LogLevel_t level,
+    ErrorCode_t errorCode,
+    const char* errorMessage) = 0;
 
-      virtual void LogData(
-        LogLevel_t level, 
-        ErrorCode_t errorCode,
-        uint32_t lineNumber, 
-        const char* filename) = 0;
+  /**
+   * @brief Log Data
+   * 
+   * @param[in] level
+   * Log level
+   *  
+   * @param[in] errorCode
+   * error code 
+   * 
+   * @param[in] lineNumber 
+   * line number
+   * 
+   * @param[in] filename 
+   * filename error information is logger
+   */
+  virtual void LogData(
+    LogLevel_t level, 
+    ErrorCode_t errorCode,
+    uint32_t lineNumber, 
+    const char* filename) = 0;
 
-      virtual void LogData(
-        LogLevel_t level, 
-        ErrorCode_t errorCode,
-        uint32_t lineNumber, 
-        const char* filename,
-        const char* errorMessage) = 0;
+  /**
+   * @brief Log Data
+   * 
+   * @param[in] level
+   * Log level
+   *  
+   * @param[in] errorCode
+   * error code 
+   * 
+   * @param[in] lineNumber 
+   * line number
+   * 
+   * @param[in] filename 
+   * filename error information is logger
+   * 
+   * @param[in] errorMessage 
+   * error message
+   */
+  virtual void LogData(
+    LogLevel_t level, 
+    ErrorCode_t errorCode,
+    uint32_t lineNumber, 
+    const char* filename,
+    const char* errorMessage) = 0;
 
-      virtual void LogData(
-        LogLevel_t level, 
-        ErrorCode_t errorCode,
-        uint32_t lineNumber, 
-        const char* function, 
-        const char* filename,
-        const char* errorMessage) = 0;
+  /**
+   * @brief Log Data
+   * 
+   * @param[in] level
+   * Log level
+   *  
+   * @param[in] errorCode
+   * error code 
+   * 
+   * @param[in] lineNumber 
+   * line number
+   * 
+   * @param[in] function 
+   * function name where the error information is logged
+   * 
+   * @param[in] filename 
+   * filename error information is logger
+   * 
+   * @param[in] errorMessage 
+   * error message
+   */
+  virtual void LogData(
+    LogLevel_t level, 
+    ErrorCode_t errorCode,
+    uint32_t lineNumber, 
+    const char* function, 
+    const char* filename,
+    const char* errorMessage) = 0;
 
-      virtual void LogData(
-        LogLevel_t level,
-        uint32_t lineNumber,
-        const char* function,
-        const char* filename,
-        const char* format,
-        va_list& args) = 0;
-  };
+  /**
+   * @brief Log Data
+   * 
+   * @param[in] level
+   * Log level
+   * 
+   * @param[in] lineNumber 
+   * line number
+   * 
+   * @param[in] function 
+   * function name where the error information is logged
+   * 
+   * @param[in] filename 
+   * filename error information is logger
+   * 
+   * @param[in] format
+   * variable list arguments formats
+   *  
+   * @param[in] args 
+   * arguments, related to error details
+   */
+  virtual void LogData(
+    LogLevel_t level,
+    uint32_t lineNumber,
+    const char* function,
+    const char* filename,
+    const char* format,
+    va_list& args) = 0;
+};
 } //cpplogger
 
 #endif  //_I_CPP_LOGGER_T_H_

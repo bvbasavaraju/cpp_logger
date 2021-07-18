@@ -20,6 +20,13 @@
 #include "logger_wrapper_t.h"
 #include "error_codes_t.h"
 
+/**
+ * @brief Return macros
+ * 
+ * This files return from function, return false, return status code
+ * if status is bad and/or pointer is null. 
+ */
+
 //Returning macros
 
 #ifndef RETURN_IF_BAD

@@ -22,6 +22,13 @@
 namespace cpplogger
 {
 
+/**
+ * @brief Status_t class
+ * This class can be used as a return type to any member functions.
+ * It stores the error code in error number object.
+ * Member functions are available to check quality of the status
+ */
+
 class Status_t
 {
 private:

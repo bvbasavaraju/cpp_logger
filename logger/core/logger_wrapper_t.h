@@ -22,40 +22,45 @@
 
 namespace cpplogger
 {
-  class Status_t;
 
-  class LoggerWrapper_t
-  {
-    private:
-      static SmartPtr_t<ICppLogger_t> logger;
+/**
+ * @brief LoggerWrapper_t class implementation
+ * 
+ */
 
-      LoggerWrapper_t();
+class Status_t;
+class LoggerWrapper_t
+{
+private:
+  static SmartPtr_t<ICppLogger_t> logger;
 
-      Status_t Initialise(SmartPtr_t<ICppLogger_t> logger_);
+  LoggerWrapper_t();
 
-    public:
-      ~LoggerWrapper_t();
+  Status_t Initialise(SmartPtr_t<ICppLogger_t> logger_);
 
-      static void LogData(
-        ICppLogger_t::LogLevel_t level, 
-        ErrorCode_t errorCode,
-        uint32_t lineNumber, 
-        const char* function, 
-        const char* filename,
-        const char* logMessage);
+public:
+  ~LoggerWrapper_t();
 
-      static void LogData(
-        ICppLogger_t::LogLevel_t level,
-        uint32_t lineNumber, 
-        const char* function, 
-        const char* filename,
-        const char* format,
-        ...);
+  static void LogData(
+    ICppLogger_t::LogLevel_t level, 
+    ErrorCode_t errorCode,
+    uint32_t lineNumber, 
+    const char* function, 
+    const char* filename,
+    const char* logMessage);
 
-      static Status_t Create(
-        SmartPtr_t<ICppLogger_t> logger_,
-        SmartPtr_t<LoggerWrapper_t>& logWrapper);
-  };
+  static void LogData(
+    ICppLogger_t::LogLevel_t level,
+    uint32_t lineNumber, 
+    const char* function, 
+    const char* filename,
+    const char* format,
+    ...);
+
+  static Status_t Create(
+    SmartPtr_t<ICppLogger_t> logger_,
+    SmartPtr_t<LoggerWrapper_t>& logWrapper);
+};
 } //cpplogger
 
 
