@@ -1,6 +1,6 @@
 # cpp_logger
 Logger created for C++ projects. 
-It is mean to to be platform independent ans operating system agnostic. 
+It is mean to to be platform independent and operating system agnostic. 
 
 An interface is used to keep it platform independent. 
 
